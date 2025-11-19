@@ -6,7 +6,7 @@
     <title inertia>SkillSwap | Barter Your Talent</title>
 
     @viteReactRefresh
-    @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+    @vite('resources/js/app.jsx')
     @inertiaHead
   </head>
 
