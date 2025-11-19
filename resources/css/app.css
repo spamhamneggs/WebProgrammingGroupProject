@@ -1,26 +1,59 @@
+@import url('https://fonts.bunny.net/css?family=merriweather:300,300i,400,400i,700,700i,900,900i|playfair-display:400,400i,500,500i,600,600i,700,700i');
+
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @theme {
-  --font-sans:
-    Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
+  --font-serif: 'Merriweather', serif;
+  --font-display: 'Playfair Display', serif;
+
+  --color-nature-50: #F4F7F2;
+  --color-nature-100: #E3EDE0;
+  --color-nature-200: #C3D9BE;
+  --color-nature-300: #9EC296;
+  --color-nature-400: #74A66B;
+  --color-nature-500: #4E8B61;
+  --color-nature-600: #3A6B49;
+  --color-nature-700: #2A4F34;
+  --color-nature-800: #1E3825;
+  --color-nature-900: #122116;
+
+  --color-earth-100: #FDFBF7;
+  --color-earth-200: #F2ECE4;
+  --color-earth-300: #DBCBB6;
+  --color-earth-800: #5C4D3C;
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Custom Scrollbar */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-stone-200, currentcolor);
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-serif text-nature-800 bg-earth-100 antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-nature-200);
+    color: var(--color-nature-900);
+  }
+}
+
+/* Blob animation */
+@layer utilities {
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
   }
 }
