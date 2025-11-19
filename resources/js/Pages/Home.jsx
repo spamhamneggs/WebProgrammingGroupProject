@@ -6,7 +6,6 @@ import {
     CheckCircle2,
     Gift,
     Handshake,
-    MessageCircle,
     Search,
     SearchCheck,
     UserPlus,
@@ -14,6 +13,10 @@ import {
 
 import { Head } from "@inertiajs/react";
 
+import Badge from "../Components/Badge";
+import Button from "../Components/Button";
+import HowItWorksStep from "../Components/HowItWorksStep";
+import SkillCard from "../Components/SkillCard";
 import Layout from "../Layouts/Layout";
 
 export default function Home() {
@@ -27,10 +30,9 @@ export default function Home() {
           <div className="absolute top-0 left-0 -ml-20 mt-40 w-72 h-72 bg-earth-300 rounded-full blur-3xl opacity-50 mix-blend-multiply animate-blob animation-delay-2000"></div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
-            <span className="inline-block py-1 px-3 rounded-full bg-nature-100 text-nature-700 text-sm font-bold tracking-wider mb-6 border border-nature-200">
-              <Bird size={16} className="inline mr-1 mb-1" />
+            <Badge icon={Bird}>
               The Spirit of SDG 17
-            </span>
+            </Badge>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-nature-900 leading-tight mb-6">
               Trade Skills.
@@ -44,7 +46,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-4 max-w-2xl mx-auto text-xl text-nature-700/80 leading-relaxed font-light">
-              A community marketplace where talent is the currency. No money changes hands - just genuine exchange and local partnerships.
+              A community marketplace where talent is the currency. No money changes hands, just genuine exchange and local partnerships.
             </p>
 
             <div className="mt-10 max-w-3xl mx-auto relative z-10">
@@ -96,29 +98,26 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-12 relative">
               <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-nature-200 border-t-2 border-dashed border-nature-300 z-0"></div>
 
-              <div className="relative z-10 flex flex-col items-center text-center group">
-                <div className="w-24 h-24 bg-earth-100 rounded-full flex items-center justify-center border-2 border-nature-200 shadow-sm group-hover:border-nature-500 group-hover:scale-110 transition-all duration-300 mb-6">
-                  <UserPlus size={40} className="text-nature-600" />
-                </div>
-                <h3 className="text-xl font-bold text-nature-900 mb-2">1. List Your Skills</h3>
-                <p className="text-nature-600 leading-relaxed px-4">Create a profile detailing what you're great at, and what you need help with.</p>
-              </div>
+              <HowItWorksStep
+                icon={UserPlus}
+                step={1}
+                title="List Your Skills"
+                description="Create a profile detailing what you're great at, and what you need help with."
+              />
 
-              <div className="relative z-10 flex flex-col items-center text-center group">
-                <div className="w-24 h-24 bg-earth-100 rounded-full flex items-center justify-center border-2 border-nature-200 shadow-sm group-hover:border-nature-500 group-hover:scale-110 transition-all duration-300 mb-6">
-                  <SearchCheck size={40} className="text-nature-600" />
-                </div>
-                <h3 className="text-xl font-bold text-nature-900 mb-2">2. Find a Match</h3>
-                <p className="text-nature-600 leading-relaxed px-4">Search the board. Found a graphic designer who needs your accounting skills? Perfect.</p>
-              </div>
+              <HowItWorksStep
+                icon={SearchCheck}
+                step={2}
+                title="Find a Match"
+                description="Search the board. Found a graphic designer who needs your accounting skills? Perfect."
+              />
 
-              <div className="relative z-10 flex flex-col items-center text-center group">
-                <div className="w-24 h-24 bg-earth-100 rounded-full flex items-center justify-center border-2 border-nature-200 shadow-sm group-hover:border-nature-500 group-hover:scale-110 transition-all duration-300 mb-6">
-                  <Banknote size={40} className="text-nature-600" />
-                </div>
-                <h3 className="text-xl font-bold text-nature-900 mb-2">3. Agree &amp; Swap</h3>
-                <p className="text-nature-600 leading-relaxed px-4">Define the terms in a simple agreement, do the work, and leave a review.</p>
-              </div>
+              <HowItWorksStep
+                icon={Banknote}
+                step={3}
+                title="Agree &amp; Swap"
+                description="Define the terms in a simple agreement, do the work, and leave a review."
+              />
             </div>
           </div>
         </section>
@@ -140,91 +139,35 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Card 1 */}
-              <div className="bg-white rounded-xl border border-nature-100 shadow-lg shadow-nature-100/50 overflow-hidden hover:-translate-y-1 transition-transform duration-300 flex flex-col">
-                <div className="p-6 flex-1">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="px-3 py-1 bg-nature-100 text-nature-700 text-xs font-bold rounded-full uppercase tracking-wide">Offering</span>
-                    <span className="text-xs text-nature-400">2h ago</span>
-                  </div>
-                  <h3 className="font-display font-bold text-xl text-nature-900 mb-2">Professional Logo Design</h3>
-                  <p className="text-nature-600 text-sm line-clamp-3">I'm a senior graphic designer offering a full logo branding package. Includes vector files and brand guidelines.</p>
+              <SkillCard
+                type="Offering"
+                timeAgo="2h ago"
+                title="Professional Logo Design"
+                description="I'm a senior graphic designer offering a full logo branding package. Includes vector files and brand guidelines."
+                tags={["Home made bread", "Gardening help"]}
+                userName="Sarah Jenkins"
+                userImage="https://i.pravatar.cc/150?u=1"
+              />
 
-                  <div className="mt-4 pt-4 border-t border-nature-100">
-                    <p className="text-xs font-bold text-nature-400 uppercase mb-1">Seeking in return:</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-2 py-1 bg-earth-200 text-nature-800 text-xs rounded">Home made bread</span>
-                      <span className="px-2 py-1 bg-earth-200 text-nature-800 text-xs rounded">Gardening help</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-earth-50 px-6 py-3 flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <img src="https://i.pravatar.cc/150?u=1" alt="User" className="w-8 h-8 rounded-full border border-nature-200" />
-                    <span className="text-sm font-medium text-nature-800">Sarah Jenkins</span>
-                  </div>
-                  <button className="text-nature-600 hover:text-nature-800 transition-colors">
-                    <MessageCircle size={20} />
-                  </button>
-                </div>
-              </div>
+              <SkillCard
+                type="Requesting"
+                timeAgo="5h ago"
+                title="Help with Social Media Marketing"
+                description="I run a small local bakery (UMKM) and struggle with Instagram. Need someone to set up templates."
+                tags={["Sourdough Bread", "Baking Lessons"]}
+                userName="Budi Santoso"
+                userImage="https://i.pravatar.cc/150?u=2"
+              />
 
-              {/* Card 2 */}
-              <div className="bg-white rounded-xl border border-nature-100 shadow-lg shadow-nature-100/50 overflow-hidden hover:-translate-y-1 transition-transform duration-300 flex flex-col">
-                <div className="p-6 flex-1">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="px-3 py-1 bg-earth-200 text-nature-800 text-xs font-bold rounded-full uppercase tracking-wide">Requesting</span>
-                    <span className="text-xs text-nature-400">5h ago</span>
-                  </div>
-                  <h3 className="font-display font-bold text-xl text-nature-900 mb-2">Help with Social Media Marketing</h3>
-                  <p className="text-nature-600 text-sm line-clamp-3">I run a small local bakery (UMKM) and struggle with Instagram. Need someone to set up templates.</p>
-
-                  <div className="mt-4 pt-4 border-t border-nature-100">
-                    <p className="text-xs font-bold text-nature-400 uppercase mb-1">Offering in return:</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-2 py-1 bg-nature-100 text-nature-800 text-xs rounded">Sourdough Bread</span>
-                      <span className="px-2 py-1 bg-nature-100 text-nature-800 text-xs rounded">Baking Lessons</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-earth-50 px-6 py-3 flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <img src="https://i.pravatar.cc/150?u=2" alt="User" className="w-8 h-8 rounded-full border border-nature-200" />
-                    <span className="text-sm font-medium text-nature-800">Budi Santoso</span>
-                  </div>
-                  <button className="text-nature-600 hover:text-nature-800 transition-colors">
-                    <MessageCircle size={20} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-white rounded-xl border border-nature-100 shadow-lg shadow-nature-100/50 overflow-hidden hover:-translate-y-1 transition-transform duration-300 flex flex-col">
-                <div className="p-6 flex-1">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="px-3 py-1 bg-nature-100 text-nature-700 text-xs font-bold rounded-full uppercase tracking-wide">Offering</span>
-                    <span className="text-xs text-nature-400">1d ago</span>
-                  </div>
-                  <h3 className="font-display font-bold text-xl text-nature-900 mb-2">Guitar Lessons (Beginner)</h3>
-                  <p className="text-nature-600 text-sm line-clamp-3">I can teach acoustic guitar basics. I have 10 years of experience playing in bands.</p>
-
-                  <div className="mt-4 pt-4 border-t border-nature-100">
-                    <p className="text-xs font-bold text-nature-400 uppercase mb-1">Seeking in return:</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-2 py-1 bg-earth-200 text-nature-800 text-xs rounded">Portrait Photography</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-earth-50 px-6 py-3 flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <img src="https://i.pravatar.cc/150?u=3" alt="User" className="w-8 h-8 rounded-full border border-nature-200" />
-                    <span className="text-sm font-medium text-nature-800">Alex Chen</span>
-                  </div>
-                  <button className="text-nature-600 hover:text-nature-800 transition-colors">
-                    <MessageCircle size={20} />
-                  </button>
-                </div>
-              </div>
+              <SkillCard
+                type="Offering"
+                timeAgo="1d ago"
+                title="Guitar Lessons (Beginner)"
+                description="I can teach acoustic guitar basics. I have 10 years of experience playing in bands."
+                tags={["Portrait Photography"]}
+                userName="Alex Chen"
+                userImage="https://i.pravatar.cc/150?u=3"
+              />
             </div>
 
             <div className="mt-12 text-center">
@@ -283,12 +226,10 @@ export default function Home() {
             <h2 className="text-4xl font-display font-bold text-nature-900 mb-6">Ready to Swap?</h2>
             <p className="text-xl text-nature-700 mb-10 font-light">Join thousands of community members trading skills and growing together today.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="bg-nature-700 text-earth-100 px-8 py-4 rounded-xl font-bold hover:bg-nature-800 transition-all shadow-lg shadow-nature-300/50 text-lg">
-                Create Free Profile
-              </button>
-              <button className="bg-transparent border-2 border-nature-700 text-nature-800 px-8 py-4 rounded-xl font-bold hover:bg-nature-700 hover:text-earth-100 transition-all text-lg">
+              <Button size="lg">Create Free Profile</Button>
+              <Button variant="secondary" size="lg">
                 Browse Listings
-              </button>
+              </Button>
             </div>
           </div>
         </section>
