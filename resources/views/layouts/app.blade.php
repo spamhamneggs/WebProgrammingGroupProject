@@ -6,7 +6,6 @@
     <title inertia>SkillSwap | Barter Your Talent</title>
 
     @viteReactRefresh
-    @routes   <!-- Ziggy injected correctly -->
     @vite('resources/js/app.jsx')
     @inertiaHead
   </head>
