@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function skills()
+    {
+        return $this->belongsToMany(\App\Models\Skill::class, 'user_skills');
+    }
+
 }
