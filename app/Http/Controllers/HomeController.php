@@ -10,4 +10,15 @@ class HomeController extends Controller
     {
         return Inertia::render('Home');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $results = Listing::where('title', 'like', "%$query%")
+                        ->orWhere('description', 'like', "%$query%")
+                        ->get();
+
+        return view('search-results', compact('results'));
+    }
 }

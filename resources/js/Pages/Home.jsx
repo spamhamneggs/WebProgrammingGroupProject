@@ -11,7 +11,11 @@ import {
     UserPlus,
 } from "lucide-react";
 
-import { Head } from "@inertiajs/react";
+import { 
+  Head,
+  router,
+ } from "@inertiajs/react";
+import { useState } from 'react';
 
 import Badge from "../Components/Badge";
 import Button from "../Components/Button";
@@ -20,6 +24,16 @@ import SkillCard from "../Components/SkillCard";
 import Layout from "../Layouts/Layout";
 
 export default function Home() {
+  const [searchNeed, setSearchNeed] = useState('');
+  const [searchOffer, setSearchOffer] = useState('');
+
+  function handleSearch() {
+    router.get('/search', {
+      need: searchNeed,
+      offer: searchOffer,
+    });
+  }
+
   return (
     <>
       <Head title="Trade Skills, Build Partnerships" />
@@ -53,19 +67,38 @@ export default function Home() {
               <div className="bg-white p-2 rounded-xl shadow-xl shadow-nature-200/50 border border-nature-100 flex flex-col md:flex-row gap-2">
                 <div className="flex-1 relative flex items-center px-4 py-2 bg-earth-50 rounded-lg border border-transparent hover:border-nature-200 transition-colors">
                   <Search size={20} className="text-nature-400 mr-3" />
-                  <input type="text" placeholder="I need help with..." className="w-full bg-transparent border-none focus:ring-0 text-nature-800 placeholder-nature-400 outline-none" />
+                  <input
+                    type="text"
+                    placeholder="I need help with..."
+                    className="w-full bg-transparent border-none focus:ring-0 text-nature-800 placeholder-nature-400 outline-none"
+                    value={searchNeed}
+                    onChange={(e) => setSearchNeed(e.target.value)}
+                  />
                 </div>
+
                 <div className="hidden md:flex items-center justify-center px-2 text-nature-300">
                   <ArrowLeftRight size={20} />
                 </div>
+
                 <div className="flex-1 relative flex items-center px-4 py-2 bg-earth-50 rounded-lg border border-transparent hover:border-nature-200 transition-colors">
                   <Gift size={20} className="text-nature-400 mr-3" />
-                  <input type="text" placeholder="I can offer..." className="w-full bg-transparent border-none focus:ring-0 text-nature-800 placeholder-nature-400 outline-none" />
+                  <input
+                    type="text"
+                    placeholder="I can offer..."
+                    className="w-full bg-transparent border-none focus:ring-0 text-nature-800 placeholder-nature-400 outline-none"
+                    value={searchOffer}
+                    onChange={(e) => setSearchOffer(e.target.value)}
+                  />
                 </div>
-                <button className="bg-nature-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-nature-800 transition-all flex items-center justify-center">
+
+                <button
+                  onClick={handleSearch}
+                  className="bg-nature-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-nature-800 transition-all flex items-center justify-center"
+                >
                   Find Match
                 </button>
               </div>
+
               <p className="mt-3 text-sm text-nature-600">
                 Popular: <span className="underline decoration-nature-400 cursor-pointer">Web Design</span>, <span className="underline decoration-nature-400 cursor-pointer">Photography</span>, <span className="underline decoration-nature-400 cursor-pointer">Baking</span>
               </p>
