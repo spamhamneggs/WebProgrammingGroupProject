@@ -8,16 +8,16 @@ use Inertia\Middleware;
 class HandleInertiaRequests extends Middleware
 {
     /**
-     * The root template that's loaded on the first page visit.
+     * The root template that is loaded on the first page visit.
      *
      * @var string
      */
-    protected $rootView = 'layouts.app';
+    protected $rootView = 'app';
 
     /**
      * Determine the current asset version.
      */
-    public function version(Request $request): string|null
+    public function version(Request $request): ?string
     {
         return parent::version($request);
     }
