@@ -10,9 +10,9 @@ class UserSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-        public function run()
+    public function run()
     {
-        \App\Models\User::factory()->count(5)->create();
+        \App\Models\User::factory()->count(45)->create();
     }
 
 
