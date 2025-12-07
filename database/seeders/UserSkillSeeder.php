@@ -16,10 +16,13 @@ class UserSkillSeeder extends Seeder
         $skills = \App\Models\Skill::all();
 
         foreach ($users as $user) {
-            // give each user 1–3 random skills
-            $user->skills()->attach(
-                $skills->random(rand(1, 3))->pluck('id')->toArray()
-            );
+            // give each user 1-3 random skills
+            $randomSkills = $skills->random(rand(1, 3));
+            foreach ($randomSkills as $skill) {
+                $user->skills()->attach($skill->id, [
+                    'type' => collect(['offer', 'need'])->random()
+                ]);
+            }
         }
     }
 

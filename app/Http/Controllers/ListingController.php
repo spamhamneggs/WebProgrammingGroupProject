@@ -14,8 +14,20 @@ class ListingController extends Controller
         $offer = $request->input('offer');
 
         $listings = Listing::query()
-            ->when($need, fn($q) => $q->where('type', 'request')->where('title', 'like', "%$need%"))
-            ->when($offer, fn($q) => $q->where('type', 'offer')->where('title', 'like', "%$offer%"))
+            ->when($need, function($q) use ($need) {
+                return $q->where('type', 'offer')
+                         ->where(function($subQ) use ($need) {
+                             $subQ->where('title', 'like', "%$need%")
+                                  ->orWhere('description', 'like', "%$need%");
+                         });
+            })
+            ->when($offer, function($q) use ($offer) {
+                return $q->where('type', 'request')
+                         ->where(function($subQ) use ($offer) {
+                             $subQ->where('title', 'like', "%$offer%")
+                                  ->orWhere('description', 'like', "%$offer%");
+                         });
+            })
             ->get();
 
         return inertia('Listings/Index', [

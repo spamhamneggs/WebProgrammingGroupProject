@@ -18,7 +18,7 @@ export default function Layout({ children }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 flex items-center gap-2">
+            <Link href="/" className="shrink-0 flex items-center gap-2">
               <div className="w-10 h-10 bg-nature-700 rounded-tr-xl rounded-bl-xl flex items-center justify-center text-earth-100">
                 <RefreshCw size={24} />
               </div>
@@ -34,10 +34,10 @@ export default function Layout({ children }) {
 
             {/* Auth Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <a href="#" className="text-nature-700 font-bold hover:text-nature-900">Log In</a>
-              <a href="#" className="bg-nature-700 text-earth-100 px-6 py-2.5 rounded-lg font-medium hover:bg-nature-800 transition-all shadow-lg shadow-nature-200">
+              <Link href="/login" className="text-nature-700 font-bold hover:text-nature-900 transition-colors">Log In</Link>
+              <Link href="/register" className="bg-nature-700 text-earth-100 px-6 py-2.5 rounded-lg font-medium hover:bg-nature-800 transition-all shadow-lg shadow-nature-200">
                 Join Now
-              </a>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -60,8 +60,8 @@ export default function Layout({ children }) {
               <a href="#" className="block px-3 py-3 text-base font-medium text-nature-700 hover:bg-nature-50 rounded-md">Community</a>
               <a href="#" className="block px-3 py-3 text-base font-medium text-nature-700 hover:bg-nature-50 rounded-md">Impact</a>
               <div className="pt-4 border-t border-nature-200 flex flex-col gap-3">
-                <a href="#" className="block text-center text-nature-700 font-bold">Log In</a>
-                <a href="#" className="block text-center bg-nature-700 text-white px-4 py-3 rounded-lg">Join Now</a>
+                <Link href="/login" className="block text-center text-nature-700 font-bold hover:bg-nature-50 rounded-md py-2 transition-colors" onClick={() => setMobileMenuOpen(false)}>Log In</Link>
+                <Link href="/register" className="block text-center bg-nature-700 text-white px-4 py-3 rounded-lg hover:bg-nature-800 transition-colors" onClick={() => setMobileMenuOpen(false)}>Join Now</Link>
               </div>
             </div>
           </div>
@@ -76,8 +76,8 @@ export default function Layout({ children }) {
       {/* Footer */}
       <footer className="bg-nature-900 text-nature-200 pt-16 pb-8 border-t border-nature-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div className="col-span-1 md:col-span-1">
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
+            <div className="col-span-1">
               <div className="flex items-center gap-2 mb-6">
                 <RefreshCw size={24} className="text-nature-300" />
                 <span className="font-display font-bold text-xl text-earth-100">SkillSwap</span>
@@ -87,7 +87,7 @@ export default function Layout({ children }) {
               </p>
             </div>
 
-            <div>
+            <div className="text-right justify-self-end-safe">
               <h4 className="text-earth-100 font-bold mb-4">Platform</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="hover:text-nature-300 transition-colors">How it Works</a></li>
@@ -96,21 +96,13 @@ export default function Layout({ children }) {
               </ul>
             </div>
 
-            <div>
+            <div className="text-right justify-self-end-safe">
               <h4 className="text-earth-100 font-bold mb-4">Community</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="hover:text-nature-300 transition-colors">Success Stories</a></li>
                 <li><a href="#" className="hover:text-nature-300 transition-colors">SDG 17 Initiative</a></li>
                 <li><a href="#" className="hover:text-nature-300 transition-colors">Blog</a></li>
               </ul>
-            </div>
-
-            <div>
-              <h4 className="text-earth-100 font-bold mb-4">Newsletter</h4>
-              <div className="flex flex-col gap-2">
-                <input type="email" placeholder="Your email" className="bg-nature-800 border border-nature-700 text-nature-100 px-4 py-2 rounded focus:outline-none focus:border-nature-500 text-sm" />
-                <button className="bg-nature-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-nature-500 transition-colors">Subscribe</button>
-              </div>
             </div>
           </div>
 
