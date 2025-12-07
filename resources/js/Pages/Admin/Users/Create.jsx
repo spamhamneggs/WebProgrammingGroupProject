@@ -18,7 +18,7 @@ export default function CreateUser() {
             ...prev,
             [name]: value
         }));
-        
+
         // Clear error when user starts typing
         if (errors[name]) {
             setErrors(prev => ({
@@ -30,7 +30,7 @@ export default function CreateUser() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const response = await fetch('/admin/users', {
                 method: 'POST',
@@ -66,7 +66,7 @@ export default function CreateUser() {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
                             <h1 className="text-2xl font-bold mb-6">Create New User</h1>
-                            
+
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -84,7 +84,7 @@ export default function CreateUser() {
                                     />
                                     {errors.name && <p className="text-red-500 text-xs italic">{errors.name}</p>}
                                 </div>
-                                
+
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                                         Email
@@ -101,7 +101,7 @@ export default function CreateUser() {
                                     />
                                     {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
                                 </div>
-                                
+
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                                         Password
@@ -118,7 +118,7 @@ export default function CreateUser() {
                                     />
                                     {errors.password && <p className="text-red-500 text-xs italic">{errors.password}</p>}
                                 </div>
-                                
+
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password_confirmation">
                                         Confirm Password
@@ -134,7 +134,7 @@ export default function CreateUser() {
                                         required
                                     />
                                 </div>
-                                
+
                                 <div className="mb-6">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
                                         Role
@@ -153,17 +153,17 @@ export default function CreateUser() {
                                     </select>
                                     {errors.role && <p className="text-red-500 text-xs italic">{errors.role}</p>}
                                 </div>
-                                
+
                                 <div className="flex items-center justify-between">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        className="bg-nature-600 hover:bg-nature-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                         disabled={Object.keys(errors).length > 0}
                                     >
                                         Create User
                                     </button>
-                                    <a 
-                                        href="/admin/users" 
+                                    <a
+                                        href="/admin/users"
                                         className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     >
                                         Cancel

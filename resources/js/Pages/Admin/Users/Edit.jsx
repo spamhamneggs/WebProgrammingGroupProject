@@ -18,7 +18,7 @@ export default function EditUser({ user }) {
             ...prev,
             [name]: value
         }));
-        
+
         // Clear error when user starts typing
         if (errors[name]) {
             setErrors(prev => ({
@@ -30,7 +30,7 @@ export default function EditUser({ user }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const response = await fetch(`/admin/users/${user.id}`, {
                 method: 'PUT',
@@ -66,7 +66,7 @@ export default function EditUser({ user }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
                             <h1 className="text-2xl font-bold mb-6">Edit User: {user.name}</h1>
-                            
+
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -84,7 +84,7 @@ export default function EditUser({ user }) {
                                     />
                                     {errors.name && <p className="text-red-500 text-xs italic">{errors.name}</p>}
                                 </div>
-                                
+
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                                         Email
@@ -101,7 +101,7 @@ export default function EditUser({ user }) {
                                     />
                                     {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
                                 </div>
-                                
+
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                                         New Password (leave blank to keep current)
@@ -117,7 +117,7 @@ export default function EditUser({ user }) {
                                     />
                                     {errors.password && <p className="text-red-500 text-xs italic">{errors.password}</p>}
                                 </div>
-                                
+
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password_confirmation">
                                         Confirm New Password
@@ -132,7 +132,7 @@ export default function EditUser({ user }) {
                                         }`}
                                     />
                                 </div>
-                                
+
                                 <div className="mb-6">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
                                         Role
@@ -151,16 +151,16 @@ export default function EditUser({ user }) {
                                     </select>
                                     {errors.role && <p className="text-red-500 text-xs italic">{errors.role}</p>}
                                 </div>
-                                
+
                                 <div className="flex items-center justify-between">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        className="bg-nature-600 hover:bg-nature-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     >
                                         Update User
                                     </button>
-                                    <a 
-                                        href="/admin/users" 
+                                    <a
+                                        href="/admin/users"
                                         className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     >
                                         Cancel

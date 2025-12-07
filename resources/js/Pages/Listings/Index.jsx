@@ -3,14 +3,14 @@ import { useState } from "react";
 import { router } from "@inertiajs/react";
 
 import Layout from "../../Layouts/Layout";
-import SearchSection from "../../Components/SearchSection";
+import SearchSection from "../../Components/searchSection";
 
 export default function Index({ listings, filters }) {
     const [searchNeed, setSearchNeed] = useState(filters.need || "");
     const [searchOffer, setSearchOffer] = useState(filters.offer || "");
 
     function handleSearch() {
-        router.get("/search", {
+        router.get("/listings", {
             need: searchNeed,
             offer: searchOffer,
         });

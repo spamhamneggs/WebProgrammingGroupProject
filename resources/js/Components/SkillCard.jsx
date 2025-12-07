@@ -7,7 +7,7 @@ export default function SkillCard({
     title,
     description,
     tags = [],
-    inExchangeFor = "", // Single string for what's offered/requested in exchange
+    inExchangeFor = [], // Now an array for what's offered/requested in exchange
     userName,
     userImage,
     userEmail, // Add user email prop
@@ -19,8 +19,10 @@ export default function SkillCard({
         : "bg-earth-200 text-nature-800";
     const tagColor = isOffering ? "bg-earth-200" : "bg-nature-100";
 
-    // Use inExchangeFor if available, otherwise use tags
-    const hasInExchangeFor = inExchangeFor && inExchangeFor.trim() !== "";
+    // Check if inExchangeFor is an array with elements or a string that's not empty
+    const hasInExchangeFor =
+        (Array.isArray(inExchangeFor) && inExchangeFor.length > 0) ||
+        (typeof inExchangeFor === "string" && inExchangeFor.trim() !== "");
 
     // Get the authenticated user from page props
     const { auth } = usePage().props;
@@ -32,8 +34,11 @@ export default function SkillCard({
             const senderName = auth?.user?.name || "Someone from SkillSwap";
 
             const subject = `Regarding your ${title} listing on SkillSwap`;
-            const body = `Hi ${userName},\n\nI saw your listing for "${title}" on SkillSwap and I'm interested in connecting with you for a skill exchange.\n\nBest regards,\n${senderName}`;
-            const mailtoLink = `mailto:${userEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const body =
+                `Hi ${userName},\n\nI saw your listing for "${title}" on SkillSwap and I'm interested in connecting with you for a skill exchange.\n\nBest regards,\n${senderName}`;
+            const mailtoLink = `mailto:${userEmail}?subject=${
+                encodeURIComponent(subject)
+            }&body=${encodeURIComponent(body)}`;
             window.location.href = mailtoLink;
         } else {
             console.error("User email is not available");
@@ -70,11 +75,22 @@ export default function SkillCard({
                     <div className="flex flex-wrap gap-2">
                         {hasInExchangeFor
                             ? (
-                                <span
-                                    className={`px-2 py-1 ${tagColor} text-nature-800 text-xs rounded`}
-                                >
-                                    {inExchangeFor}
-                                </span>
+                                Array.isArray(inExchangeFor)
+                                    ? inExchangeFor.map((item, index) => (
+                                        <span
+                                            key={index}
+                                            className={`px-2 py-1 ${tagColor} text-nature-800 text-xs rounded`}
+                                        >
+                                            {item}
+                                        </span>
+                                    ))
+                                    : (
+                                        <span
+                                            className={`px-2 py-1 ${tagColor} text-nature-800 text-xs rounded`}
+                                        >
+                                            {inExchangeFor}
+                                        </span>
+                                    )
                             )
                             : tags.length > 0
                             ? (

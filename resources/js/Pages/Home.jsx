@@ -8,13 +8,13 @@ import {
     UserPlus,
 } from "lucide-react";
 
-import { Head, router } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
 import Badge from "../Components/Badge";
 import Button from "../Components/Button";
 import HowItWorksStep from "../Components/HowItWorksStep";
-import SearchSection from "../Components/SearchSection";
+import SearchSection from "../Components/searchSection";
 import SkillCard from "../Components/SkillCard";
 import Layout from "../Layouts/Layout";
 
@@ -23,7 +23,7 @@ export default function Home() {
     const [searchOffer, setSearchOffer] = useState("");
 
     function handleSearch() {
-        router.get("/search", {
+        router.get("/listings", {
             need: searchNeed,
             offer: searchOffer,
         });
@@ -42,7 +42,9 @@ export default function Home() {
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
                         <Badge icon={Bird}>
-                            The Spirit of SDG 17
+                            <span className="font-medium">
+                                The Spirit of SDG 17
+                            </span>
                         </Badge>
 
                         <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-nature-900 leading-tight mb-6">
@@ -163,79 +165,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Featured Listings */}
-                <section className="py-20 bg-nature-50">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-                            <div>
-                                <h2 className="text-3xl md:text-4xl font-display font-bold text-nature-800">
-                                    Community Board
-                                </h2>
-                                <p className="mt-2 text-nature-600">
-                                    Recent requests and offers from your area.
-                                </p>
-                            </div>
-
-                            <div className="mt-6 md:mt-0 bg-white p-1 rounded-lg shadow-sm border border-nature-200 inline-flex">
-                                <button className="px-6 py-2 rounded-md bg-nature-700 text-white text-sm font-bold shadow-sm">
-                                    All
-                                </button>
-                                <button className="px-6 py-2 rounded-md text-nature-600 hover:bg-nature-50 text-sm font-bold transition-colors">
-                                    Offers
-                                </button>
-                                <button className="px-6 py-2 rounded-md text-nature-600 hover:bg-nature-50 text-sm font-bold transition-colors">
-                                    Requests
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <SkillCard
-                                type="Offering"
-                                timeAgo="2h ago"
-                                title="Professional Logo Design"
-                                description="I'm a senior graphic designer offering a full logo branding package. Includes vector files and brand guidelines."
-                                tags={["Home made bread", "Gardening help"]}
-                                userName="Sarah Jenkins"
-                                userImage="https://i.pravatar.cc/150?u=1"
-                                userEmail="sarah.jenkins@example.com"
-                            />
-
-                            <SkillCard
-                                type="Requesting"
-                                timeAgo="5h ago"
-                                title="Help with Social Media Marketing"
-                                description="I run a small local bakery (UMKM) and struggle with Instagram. Need someone to set up templates."
-                                tags={["Sourdough Bread", "Baking Lessons"]}
-                                userName="Budi Santoso"
-                                userImage="https://i.pravatar.cc/150?u=2"
-                                userEmail="budi.santoso@example.com"
-                            />
-
-                            <SkillCard
-                                type="Offering"
-                                timeAgo="1d ago"
-                                title="Guitar Lessons (Beginner)"
-                                description="I can teach acoustic guitar basics. I have 10 years of experience playing in bands."
-                                tags={["Portrait Photography"]}
-                                userName="Alex Chen"
-                                userImage="https://i.pravatar.cc/150?u=3"
-                                userEmail="alex.chen@example.com"
-                            />
-                        </div>
-
-                        <div className="mt-12 text-center">
-                            <a
-                                href="#"
-                                className="inline-flex items-center text-nature-700 font-bold hover:text-nature-900 border-b-2 border-nature-200 hover:border-nature-500 transition-all pb-1"
-                            >
-                                View All Listings{" "}
-                                <ArrowRight size={16} className="ml-2" />
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
                 {/* SDG 17 */}
                 <section className="py-20 bg-nature-800 text-earth-100 relative overflow-hidden">
                     <div
@@ -325,10 +254,14 @@ export default function Home() {
                             and growing together today.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <Button size="lg">Create Free Profile</Button>
-                            <Button variant="secondary" size="lg">
-                                Browse Listings
-                            </Button>
+                            <Link href="/register">
+                                <Button size="lg">Create Free Profile</Button>
+                            </Link>
+                            <Link href="/listings">
+                                <Button variant="secondary" size="lg">
+                                    Browse Listings
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </section>

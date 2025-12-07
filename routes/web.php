@@ -16,7 +16,7 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::get('/listings', [SearchController::class, 'index'])->name('search.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

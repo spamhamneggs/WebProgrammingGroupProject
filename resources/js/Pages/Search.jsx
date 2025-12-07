@@ -2,7 +2,7 @@ import { Head, Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
 import Layout from "../Layouts/Layout";
-import SearchSection from "../Components/SearchSection";
+import SearchSection from "../Components/searchSection";
 import SkillCard from "../Components/SkillCard";
 
 export default function Search({ searchNeed, searchOffer, listings = [] }) {
@@ -13,7 +13,7 @@ export default function Search({ searchNeed, searchOffer, listings = [] }) {
     const hasFilters = searchNeed || searchOffer;
 
     function handleSearch() {
-        router.get("/search", {
+        router.get("/listings", {
             need: searchInputNeed,
             offer: searchInputOffer,
         });
