@@ -11,7 +11,7 @@ import {
     UserPlus,
 } from "lucide-react";
 
-import { 
+import {
   Head,
   router,
  } from "@inertiajs/react";
@@ -180,6 +180,7 @@ export default function Home() {
                 tags={["Home made bread", "Gardening help"]}
                 userName="Sarah Jenkins"
                 userImage="https://i.pravatar.cc/150?u=1"
+                userEmail="sarah.jenkins@example.com"
               />
 
               <SkillCard
@@ -190,6 +191,7 @@ export default function Home() {
                 tags={["Sourdough Bread", "Baking Lessons"]}
                 userName="Budi Santoso"
                 userImage="https://i.pravatar.cc/150?u=2"
+                userEmail="budi.santoso@example.com"
               />
 
               <SkillCard
@@ -200,6 +202,7 @@ export default function Home() {
                 tags={["Portrait Photography"]}
                 userName="Alex Chen"
                 userImage="https://i.pravatar.cc/150?u=3"
+                userEmail="alex.chen@example.com"
               />
             </div>
 

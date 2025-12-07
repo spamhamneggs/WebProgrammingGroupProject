@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->enum('type', ['offer', 'request']); // matches your frontend filter
+            $table->text('in_exchange_for')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
