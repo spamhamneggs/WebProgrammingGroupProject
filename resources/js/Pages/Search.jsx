@@ -1,10 +1,8 @@
 import { Head, Link, router } from "@inertiajs/react";
 import { useState } from "react";
-import { ArrowLeftRight, Gift, Search as SearchIcon } from "lucide-react";
 
-import Badge from "../Components/Badge";
-import Button from "../Components/Button";
 import Layout from "../Layouts/Layout";
+import SearchSection from "../Components/SearchSection";
 import SkillCard from "../Components/SkillCard";
 
 export default function Search({ searchNeed, searchOffer, listings = [] }) {
@@ -32,56 +30,20 @@ export default function Search({ searchNeed, searchOffer, listings = [] }) {
                         </h1>
                     </div>
                     {/* Search form section */}
-                    <div className="mb-12">
-                        <div className="bg-white p-2 rounded-xl shadow-xl shadow-nature-200/50 border border-nature-100 flex flex-col md:flex-row gap-2">
-                            <div className="flex-1 relative flex items-center px-4 py-2 bg-earth-50 rounded-lg border border-transparent hover:border-nature-200 transition-colors">
-                                <SearchIcon
-                                    size={20}
-                                    className="text-nature-400 mr-3"
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="I need help with..."
-                                    className="w-full bg-transparent border-none focus:ring-0 text-nature-800 placeholder-nature-400 outline-none"
-                                    value={searchInputNeed}
-                                    onChange={(e) =>
-                                        setSearchInputNeed(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="hidden md:flex items-center justify-center px-2 text-nature-300">
-                                <ArrowLeftRight size={20} />
-                            </div>
-
-                            <div className="flex-1 relative flex items-center px-4 py-2 bg-earth-50 rounded-lg border border-transparent hover:border-nature-200 transition-colors">
-                                <Gift
-                                    size={20}
-                                    className="text-nature-400 mr-3"
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="I can offer..."
-                                    className="w-full bg-transparent border-none focus:ring-0 text-nature-800 placeholder-nature-400 outline-none"
-                                    value={searchInputOffer}
-                                    onChange={(e) =>
-                                        setSearchInputOffer(e.target.value)}
-                                />
-                            </div>
-
-                            <button
-                                onClick={handleSearch}
-                                className="bg-nature-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-nature-800 transition-all flex items-center justify-center"
-                            >
-                                Find Match
-                            </button>
-                        </div>
-                    </div>
+                    <SearchSection
+                        searchNeed={searchInputNeed}
+                        setSearchNeed={setSearchInputNeed}
+                        searchOffer={searchInputOffer}
+                        setSearchOffer={setSearchInputOffer}
+                        handleSearch={handleSearch}
+                        buttonText="Find Match"
+                    />
 
                     {hasResults
                         ? (
                             <div>
-                                <div className="flex justify-between items-center mb-8">
-                                    <h2 className="text-2xl font-bold text-nature-800">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h2 className="text-2xl font-display font-bold text-nature-800">
                                         Found {listings.length}{" "}
                                         {listings.length === 1
                                             ? "result"
@@ -98,7 +60,8 @@ export default function Search({ searchNeed, searchOffer, listings = [] }) {
                                             title={listing.title}
                                             description={listing.description}
                                             tags={[]}
-                                            inExchangeFor={listing.in_exchange_for || ""}
+                                            inExchangeFor={listing
+                                                .in_exchange_for || ""}
                                             userName={listing.user?.name ||
                                                 "Anonymous"}
                                             userImage={listing.user?.avatar ||
