@@ -1,5 +1,6 @@
+import { useState } from "react";
+
 import {
-    ArrowRight,
     Banknote,
     Bird,
     CheckCircle2,
@@ -8,14 +9,16 @@ import {
     UserPlus,
 } from "lucide-react";
 
-import { Head, Link, router } from "@inertiajs/react";
-import { useState } from "react";
+import {
+    Head,
+    Link,
+    router,
+} from "@inertiajs/react";
 
 import Badge from "../Components/Badge";
 import Button from "../Components/Button";
 import HowItWorksStep from "../Components/HowItWorksStep";
-import SearchSection from "../Components/searchSection";
-import SkillCard from "../Components/SkillCard";
+import SearchSection from "../Components/SearchSection";
 import Layout from "../Layouts/Layout";
 
 export default function Home() {
