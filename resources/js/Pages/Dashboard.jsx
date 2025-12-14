@@ -55,6 +55,18 @@ export default function Dashboard() {
                                         </p>
                                     </a>
 
+                                    <a
+                                        href={route('listings.create')}
+                                        className="bg-nature-50 hover:bg-nature-100 p-4 rounded-lg transition duration-300 border border-nature-200"
+                                    >
+                                        <h3 className="font-medium text-nature-800">
+                                            Create Listing
+                                        </h3>
+                                        <p className="text-sm text-nature-600 mt-1">
+                                            Post a new offer or request
+                                        </p>
+                                    </a>
+
                                     {auth.user?.role === "admin" && (
                                         <a
                                             href="/admin/users"

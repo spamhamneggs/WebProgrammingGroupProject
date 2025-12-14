@@ -1,9 +1,17 @@
 import { useState } from "react";
-import { usePage } from "@inertiajs/react";
 
-import { Menu, RefreshCw, User } from "lucide-react";
+import {
+    Menu,
+    Plus,
+    RefreshCw,
+    Telescope,
+    User,
+} from "lucide-react";
 
-import { Link } from "@inertiajs/react";
+import {
+    Link,
+    usePage,
+} from "@inertiajs/react";
 
 export default function Layout({ children }) {
     const { auth } = usePage().props;
@@ -18,125 +26,135 @@ export default function Layout({ children }) {
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                     <div className="flex justify-between items-center h-20">
-                        {/* Logo */}
-                        <Link
-                            href="/"
-                            className="shrink-0 flex items-center gap-2"
-                        >
-                            <div className="w-10 h-10 bg-nature-700 rounded-tr-xl rounded-bl-xl flex items-center justify-center text-earth-100">
-                                <RefreshCw size={24} />
-                            </div>
-                            <span className="font-display font-bold text-2xl tracking-tight text-nature-800">
-                                SkillSwap
-                            </span>
-                        </Link>
+                        {/* Left Section: Logo and Explore Listings */}
+                        <div className="flex items-center gap-8">
+                            {/* Logo */}
+                            <Link
+                                href="/"
+                                className="shrink-0 flex items-center gap-2"
+                            >
+                                <div className="w-10 h-10 bg-nature-700 rounded-tr-xl rounded-bl-xl flex items-center justify-center text-earth-100">
+                                    <RefreshCw size={24} />
+                                </div>
+                                <span className="font-display font-bold text-2xl tracking-tight text-nature-800">
+                                    SkillSwap
+                                </span>
+                            </Link>
 
-                        {/* Desktop Menu */}
-                        <div className="hidden md:flex items-center space-x-8">
-                            <a
-                                href="#"
-                                className="text-nature-700 hover:text-nature-500 font-medium transition-colors"
+                            {/* Explore Listings (Desktop) */}
+                            <Link
+                                href="/listings"
+                                className="text-nature-700 hover:text-nature-500 font-medium transition-colors hidden md:block"
                             >
-                                Explore Skills
-                            </a>
-                            <a
-                                href="#"
-                                className="text-nature-700 hover:text-nature-500 font-medium transition-colors"
-                            >
-                                Community
-                            </a>
-                            <a
-                                href="#"
-                                className="text-nature-700 hover:text-nature-500 font-medium transition-colors"
-                            >
-                                SDG 17 Impact
-                            </a>
+                                Explore Listings
+                            </Link>
                         </div>
 
-                        {auth.user
-                            ? (
-                                // User is logged in - show profile menu with click-based dropdown
-                                <div className="hidden md:flex items-center gap-3">
-                                    <Link
-                                        href="/dashboard"
-                                        className="text-nature-700 hover:text-nature-500 font-medium transition-colors px-3 py-2"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                    <div className="relative">
-                                        {/* Dropdown button */}
-                                        <button
-                                            onClick={() =>
-                                                setUserMenuOpen(!userMenuOpen)}
-                                            className="flex items-center gap-2 text-nature-700 hover:text-nature-500 font-medium transition-colors px-3 py-2"
-                                            aria-haspopup="true"
-                                            aria-expanded={userMenuOpen}
-                                        >
-                                            <User size={18} />
-                                            <span>{auth.user.name}</span>
-                                            <svg
-                                                className={`w-4 h-4 ml-1 transition-transform duration-200 ${
-                                                    userMenuOpen
-                                                        ? "rotate-180"
-                                                        : ""
-                                                }`}
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M19 9l-7 7-7-7"
-                                                >
-                                                </path>
-                                            </svg>
-                                        </button>
+                        {/* Right Section: Auth/User Menu */}
+                        <div className="hidden md:flex items-center space-x-8">
 
-                                        {/* Dropdown menu - only show when userMenuOpen is true */}
-                                        {userMenuOpen && (
-                                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 border border-earth-200 overflow-hidden">
-                                                <Link
-                                                    href="/profile"
-                                                    className="block w-full px-5 py-3 text-sm text-nature-700 hover:bg-earth-100 text-left"
-                                                    onClick={() =>
-                                                        setUserMenuOpen(false)}
+                            {auth.user
+                                ? (
+                                    // User is logged in - show profile menu with click-based dropdown
+                                    <div className="flex items-center gap-3">
+                                        <Link
+                                            href="/listings/create"
+                                            className="flex items-center gap-2 bg-nature-600 text-white hover:bg-nature-700 px-4 py-2 rounded-lg font-medium transition-colors shadow-sm"
+                                        >
+                                            <Plus size={18} />
+                                            <span>Create Listing</span>
+                                        </Link>
+                                        <div className="relative">
+                                            {/* Dropdown button */}
+                                            <button
+                                                onClick={() =>
+                                                    setUserMenuOpen(
+                                                        !userMenuOpen
+                                                    )}
+                                                className="flex items-center gap-2 text-nature-700 hover:text-nature-500 font-medium transition-colors px-3 py-2"
+                                                aria-haspopup="true"
+                                                aria-expanded={userMenuOpen}
+                                            >
+                                                <User size={18} />
+                                                <span>{auth.user.name}</span>
+                                                <svg
+                                                    className={`w-4 h-4 ml-1 transition-transform duration-200 ${
+                                                        userMenuOpen
+                                                            ? "rotate-180"
+                                                            : ""
+                                                    }`}
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
                                                 >
-                                                    Profile
-                                                </Link>
-                                                <Link
-                                                    href="/logout"
-                                                    method="post"
-                                                    as="button"
-                                                    className="block w-full px-5 py-3 text-sm text-red-600 font-bold hover:bg-red-50 text-left cursor-pointerWhy"
-                                                    onClick={() =>
-                                                        setUserMenuOpen(false)}
-                                                >
-                                                    Logout
-                                                </Link>
-                                            </div>
-                                        )}
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
+                                                        d="M19 9l-7 7-7-7"
+                                                    >
+                                                    </path>
+                                                </svg>
+                                            </button>
+
+                                            {/* Dropdown menu - only show when userMenuOpen is true */}
+                                            {userMenuOpen && (
+                                                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 border border-earth-200 overflow-hidden">
+                                                    <Link
+                                                        href="/dashboard"
+                                                        className="block w-full px-5 py-3 text-sm text-nature-700 hover:bg-earth-100 text-left"
+                                                        onClick={() =>
+                                                            setUserMenuOpen(
+                                                                false
+                                                            )}
+                                                    >
+                                                        Dashboard
+                                                    </Link>
+                                                    <Link
+                                                        href="/profile"
+                                                        className="block w-full px-5 py-3 text-sm text-nature-700 hover:bg-earth-100 text-left"
+                                                        onClick={() =>
+                                                            setUserMenuOpen(
+                                                                false
+                                                            )}
+                                                    >
+                                                        Profile
+                                                    </Link>
+                                                    <Link
+                                                        href="/logout"
+                                                        method="post"
+                                                        as="button"
+                                                        className="block w-full px-5 py-3 text-sm text-red-600 font-bold hover:bg-red-50 text-left cursor-pointerWhy"
+                                                        onClick={() =>
+                                                            setUserMenuOpen(
+                                                                false
+                                                            )}
+                                                    >
+                                                        Logout
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                            : (
-                                // User is not logged in - show auth buttons
-                                <div className="hidden md:flex items-center gap-3">
-                                    <Link
-                                        href="/login"
-                                        className="text-nature-700 font-semibold hover:text-nature-900 transition-colors px-4 py-2 rounded-lg hover:bg-nature-50"
-                                    >
-                                        Log In
-                                    </Link>
-                                    <Link
-                                        href="/register"
-                                        className="bg-nature-700 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-nature-800 transition-all shadow-md hover:shadow-lg"
-                                    >
-                                        Join Now
-                                    </Link>
-                                </div>
-                            )}
+                                )
+                                : (
+                                    // User is not logged in - show auth buttons
+                                    <div className="flex items-center gap-3">
+                                        <Link
+                                            href="/login"
+                                            className="text-nature-700 font-semibold hover:text-nature-900 transition-colors px-4 py-2 rounded-lg hover:bg-nature-50"
+                                        >
+                                            Log In
+                                        </Link>
+                                        <Link
+                                            href="/register"
+                                            className="bg-nature-700 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-nature-800 transition-all shadow-md hover:shadow-lg"
+                                        >
+                                            Join Now
+                                        </Link>
+                                    </div>
+                                )}
+                        </div>
 
                         {/* Mobile menu button */}
                         <div className="md:hidden flex items-center">
@@ -156,31 +174,30 @@ export default function Layout({ children }) {
                     <div className="md:hidden bg-earth-100 border-t border-nature-200 absolute w-full">
                         <div className="px-4 pt-2 pb-6 space-y-2 shadow-lg">
                             <a
-                                href="#"
-                                className="block px-3 py-3 text-base font-medium text-nature-700 hover:bg-nature-50 rounded-md"
+                                href="/listings"
+                                className="flex items-center gap-2 py-2 text-base font-medium text-nature-700 hover:bg-nature-50 rounded-md"
                             >
-                                Explore Skills
-                            </a>
-                            <a
-                                href="#"
-                                className="block px-3 py-3 text-base font-medium text-nature-700 hover:bg-nature-50 rounded-md"
-                            >
-                                Community
-                            </a>
-                            <a
-                                href="#"
-                                className="block px-3 py-3 text-base font-medium text-nature-700 hover:bg-nature-50 rounded-md"
-                            >
-                                Impact
+                            <Telescope size={18}/>
+                                Explore Listings
                             </a>
 
                             {auth.user
                                 ? (
                                     // User is logged in - show user menu
+                                    <>
+                                    <Link
+                                        href="/listings/create"
+                                        className="text-nature-700 font-bold hover:bg-nature-50 rounded-md py-2 transition-colors flex items-center gap-2"
+                                        onClick={() =>
+                                            setMobileMenuOpen(false)}
+                                    >
+                                        <Plus size={18} />
+                                        Create Listing
+                                    </Link>
                                     <div className="pt-4 border-t border-nature-200 flex flex-col gap-3">
                                         <Link
                                             href="/dashboard"
-                                            className="text-nature-700 font-bold hover:bg-nature-50 rounded-md py-2 transition-colors"
+                                            className="text-nature-700 hover:bg-nature-50 rounded-md py-2 transition-colors"
                                             onClick={() =>
                                                 setMobileMenuOpen(false)}
                                         >
@@ -188,7 +205,7 @@ export default function Layout({ children }) {
                                         </Link>
                                         <Link
                                             href="/profile"
-                                            className="text-nature-700 font-bold hover:bg-nature-50 rounded-md py-2 transition-colors"
+                                            className="text-nature-700 hover:bg-nature-50 rounded-md py-2 transition-colors"
                                             onClick={() =>
                                                 setMobileMenuOpen(false)}
                                         >
@@ -205,6 +222,7 @@ export default function Layout({ children }) {
                                             Logout
                                         </Link>
                                     </div>
+                                    </>
                                 )
                                 : (
                                     // User is not logged in - show auth buttons
@@ -275,7 +293,7 @@ export default function Layout({ children }) {
                                         href="#"
                                         className="hover:text-nature-300 transition-colors"
                                     >
-                                        Browse Skills
+                                        Explore Listings
                                     </a>
                                 </li>
                                 <li>
@@ -308,14 +326,6 @@ export default function Layout({ children }) {
                                         className="hover:text-nature-300 transition-colors"
                                     >
                                         SDG 17 Initiative
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="hover:text-nature-300 transition-colors"
-                                    >
-                                        Blog
                                     </a>
                                 </li>
                             </ul>

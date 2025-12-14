@@ -22,7 +22,8 @@ class SearchController extends Controller
                 return $q->where('type', 'offer')
                          ->where(function($subQ) use ($need) {
                              $subQ->where('title', 'like', "%$need%")
-                                  ->orWhere('description', 'like', "%$need%");
+                                  ->orWhere('description', 'like', "%$need%")
+                                  ->orWhere('skill', 'like', "%$need%");
                          });
             })
             ->when($offer, function($q) use ($offer) {
@@ -30,7 +31,8 @@ class SearchController extends Controller
                 return $q->where('type', 'request')
                          ->where(function($subQ) use ($offer) {
                              $subQ->where('title', 'like', "%$offer%")
-                                  ->orWhere('description', 'like', "%$offer%");
+                                  ->orWhere('description', 'like', "%$offer%")
+                                  ->orWhere('skill', 'like', "%$offer%");
                          });
             })
             ->latest()

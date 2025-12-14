@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
-    protected $fillable = ['user_id', 'title', 'description', 'type', 'in_exchange_for'];
+    protected $fillable = ['user_id', 'skill', 'title', 'description', 'type', 'in_exchange_for'];
 
     protected $casts = [
         'in_exchange_for' => 'array',

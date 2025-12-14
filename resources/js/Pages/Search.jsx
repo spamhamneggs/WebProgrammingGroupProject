@@ -1,9 +1,14 @@
-import { Head, Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
-import Layout from "../Layouts/Layout";
-import SearchSection from "../Components/searchSection";
+import {
+    Head,
+    Link,
+    router,
+} from "@inertiajs/react";
+
+import SearchSection from "../Components/SearchSection";
 import SkillCard from "../Components/SkillCard";
+import Layout from "../Layouts/Layout";
 
 export default function Search({ searchNeed, searchOffer, listings = [] }) {
     const [searchInputNeed, setSearchInputNeed] = useState(searchNeed || "");
@@ -58,6 +63,7 @@ export default function Search({ searchNeed, searchOffer, listings = [] }) {
                                             type={listing.type}
                                             timeAgo="Just now"
                                             title={listing.title}
+                                            skill={listing.skill}
                                             description={listing.description}
                                             tags={[]}
                                             inExchangeFor={listing
