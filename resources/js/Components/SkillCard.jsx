@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react";
+
 import { usePage } from "@inertiajs/react";
 
 export default function SkillCard({
@@ -34,7 +35,7 @@ export default function SkillCard({
             // Use the authenticated user's name if logged in, otherwise use a default
             const senderName = auth?.user?.name || "Someone from SkillSwap";
 
-            const subject = `Regarding your ${title} listing on SkillSwap`;
+            const subject = `Regarding your ${skill} listing on SkillSwap`;
             const body =
                 `Hi ${userName},\n\nI saw your listing for "${title}" on SkillSwap and I'm interested in connecting with you for a skill exchange.\n\nBest regards,\n${senderName}`;
             const mailtoLink = `mailto:${userEmail}?subject=${

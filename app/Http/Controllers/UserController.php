@@ -94,23 +94,29 @@ class UserController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $user->update([
-            'name' => $request->name ?? $user->name,
-            'email' => $request->email ?? $user->email,
-            'role' => $request->role ?? $user->role,
-        ]);
-
-        // Only update password if provided
-        if ($request->filled('password')) {
+        try {
             $user->update([
-                'password' => Hash::make($request->password),
+                'name' => $request->name ?? $user->name,
+                'email' => $request->email ?? $user->email,
+                'role' => $request->role ?? $user->role,
             ]);
-        }
 
-        return response()->json([
-            'message' => 'User updated successfully!',
-            'user' => $user
-        ], 200);
+            // Only update password if provided
+            if ($request->filled('password')) {
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'User updated successfully!',
+                'user' => $user
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Server Error: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     /**

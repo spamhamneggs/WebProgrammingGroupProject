@@ -36,25 +36,35 @@ export default function EditUser({ user }) {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 },
                 body: JSON.stringify(formData)
             });
 
-            const data = await response.json();
+            const contentType = response.headers.get("content-type");
+            
+            if (contentType && contentType.includes("application/json")) {
+                const data = await response.json();
 
-            if (!response.ok) {
-                if (data.errors) {
-                    setErrors(data.errors);
+                if (!response.ok) {
+                    if (data.errors) {
+                        setErrors(data.errors);
+                    } else {
+                        alert(data.message || `Error ${response.status}: Failed to update user`);
+                    }
                 } else {
-                    alert(data.message || 'Error updating user');
+                    // Redirect to users list
+                    window.location.href = '/admin/users';
                 }
             } else {
-                // Redirect to users list
-                window.location.href = '/admin/users';
+                const text = await response.text();
+                console.error("Non-JSON response:", text);
+                alert(`Error ${response.status}: Server returned unexpected response (not JSON).`);
             }
         } catch (error) {
-            alert('Error updating user');
+            console.error("Fetch error:", error);
+            alert(`System Error: ${error.message}`);
         }
     };
 
