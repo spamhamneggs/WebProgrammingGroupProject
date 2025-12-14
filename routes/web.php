@@ -29,11 +29,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/listings', [ListingController::class, 'store'])
-        ->name('listings.store');
+    Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create');
+    Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');
 });
-Route::post('/listings', [ListingController::class, 'store'])
-    ->name('listings.store');
 
 
 Route::middleware('auth')->group(function () {

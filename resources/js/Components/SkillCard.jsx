@@ -5,6 +5,7 @@ export default function SkillCard({
     type = "Offering",
     timeAgo = "2h ago",
     title,
+    skill,
     description,
     tags = [],
     inExchangeFor = [], // Now an array for what's offered/requested in exchange
@@ -59,9 +60,16 @@ export default function SkillCard({
                     </span>
                     <span className="text-xs text-nature-400">{timeAgo}</span>
                 </div>
-                <h3 className="font-display font-bold text-xl text-nature-900 mb-2">
+                <h3 className="font-display font-bold text-xl text-nature-900 mb-1">
                     {title}
                 </h3>
+                {skill && (
+                    <div className="mb-2">
+                        <span className="text-xs font-semibold text-nature-600 bg-nature-50 px-2 py-0.5 rounded border border-nature-100 uppercase tracking-wider">
+                            {skill}
+                        </span>
+                    </div>
+                )}
                 <p className="text-nature-600 text-sm line-clamp-3">
                     {description}
                 </p>

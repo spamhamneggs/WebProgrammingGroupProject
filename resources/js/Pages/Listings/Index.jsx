@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { router } from "@inertiajs/react";
 
+import SearchSection from "../../Components/SearchSection";
 import Layout from "../../Layouts/Layout";
-import SearchSection from "../../Components/searchSection";
 
 export default function Index({ listings, filters }) {
     const [searchNeed, setSearchNeed] = useState(filters.need || "");
